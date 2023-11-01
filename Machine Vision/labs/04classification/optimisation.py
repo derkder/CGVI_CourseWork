@@ -29,7 +29,12 @@ class NewtonMethod(Optimiser):
 
 
 class SteepestDescent(Optimiser):
-    pass
+    def step(x, function):
+        gradient = function.jacobian(x)
+        #move toward the opposite direction of gradient
+        update_direction = -gradient
+
+        return line_search(x, update_direction, function)
 
 
 def array_from_dict(d):

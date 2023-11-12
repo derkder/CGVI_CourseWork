@@ -22,10 +22,10 @@ function setup()
 		type: `x-shader/x-fragment`,
 		title: `RaytracingDemoFS - GL`,
 		id: `RaytracingDemoFS`,
-		initialValue: `#define SOLUTION_CYLINDER_AND_PLANE
-#define SOLUTION_SHADOW
-#define SOLUTION_REFLECTION_REFRACTION
-#define SOLUTION_FRESNEL
+		initialValue: `//#define SOLUTION_CYLINDER_AND_PLANE
+//#define SOLUTION_SHADOW
+//#define SOLUTION_REFLECTION_REFRACTION
+//#define SOLUTION_FRESNEL
 //#define SOLUTION_POLYTOPE
 
 precision highp float;

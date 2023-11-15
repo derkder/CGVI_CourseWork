@@ -94,34 +94,3 @@ def dynamicProgramVec(unaryCosts, pairwiseCosts):
     bestPath = np.floor(np.random.random(nPosition)*nNodesPerPosition)
 
     return bestPath
-
-def dynamicProgramVec(unaryCosts, pairwiseCosts):
-    nNodesPerPosition = len(unaryCosts)
-    nPosition = len(unaryCosts[0])
-
-    minimumCost = np.zeros([nNodesPerPosition, nPosition])
-    parents = np.zeros([nNodesPerPosition, nPosition], dtype=int)
-
-    # 前向传递
-    minimumCost[:, 0] = unaryCosts[:, 0]
-
-    for cPosition in range(1, nPosition):
-        for cNode in range(nNodesPerPosition):
-            # 使用广播机制计算从上一列到当前节点的所有路径成本
-            pathCosts = minimumCost[:, cPosition - 1] + pairwiseCosts[:, cNode] + unaryCosts[cNode, cPosition]
-            minCost = np.min(pathCosts)
-            ind = np.argmin(pathCosts)
-            minimumCost[cNode, cPosition] = minCost
-            parents[cNode, cPosition] = ind
-
-    # 后向传递
-    bestPath = np.zeros([nPosition, 1], dtype=int)
-    minInd = np.argmin(minimumCost[:, -1])
-    bestPath[-1, 0] = minInd
-
-    for cPosition in range(nPosition - 2, -1, -1):
-        bestParent = parents[minInd, cPosition + 1]
-        bestPath[cPosition, 0] = bestParent
-        minInd = bestParent
-
-    return bestPath

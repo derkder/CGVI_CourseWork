@@ -1,0 +1,8 @@
+1. numpy.polyfit()
+2. numpy.linalg.solve()
+2. Any function in the module sklearn.linear_model
+3. Any function in the module sklearn.decomposition
+4. torch.pca_lowrank()
+5. torch.svd()
+6. torch.linalg.svd()
+7. Any function/class from cv2 to denoise images.

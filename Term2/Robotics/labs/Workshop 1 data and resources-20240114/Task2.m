@@ -91,19 +91,18 @@ while solution_difference > convergence_threshold && iteration < max_iterations
     % 计算残差向量v
     I_m = eye(num_satellites); % 创建m x m的单位矩阵
     H_G_transpose = H_G'; % H_G的转置
-    % P = I_m - H_G * inv(H_G_transpose * H_G) * H_G_transpose; % 投影矩阵
+    %P = I_m - H_G * inv(H_G_transpose * H_G) * H_G_transpose; % 投影矩阵
     P = H_G * inv(H_G_transpose * H_G) * H_G_transpose - I_m; % 投影矩阵
     v = P * measurement_innovation; % 残差向量
     
     % 计算残差协方差矩阵C_v
-    C_v = P * (sigma_rho^2);
+    C_v = (-P) * (sigma_rho^2);
     
     % 检测异常值
     outliers = abs(v) > sqrt(diag(C_v)) * T;
 
     % 如果有异常值
-    if any(outliers) && iteration > 2 && hasDele == 0
-        hasDele = 1;
+    if any(outliers) && iteration > 2
         T = 5;
         % 找到残差最大的卫星
         [~, outlier_idx] = max(abs(v));

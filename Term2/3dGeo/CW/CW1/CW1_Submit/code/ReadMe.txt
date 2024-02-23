@@ -1,0 +1,1 @@
+I have made some changes in halfedge_mesh.halfedge_mesh code so I also posted it here.

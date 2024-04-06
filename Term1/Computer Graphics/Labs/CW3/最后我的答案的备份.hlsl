@@ -483,6 +483,7 @@ vec3 samplePath(const Scene scene, const Ray initialRay) {
 
 		if(!hitInfo.hit) return result;
 
+		// getEmission是返回的radiance吧（material.emission）
 		result += throughput * getEmission(hitInfo.material, hitInfo.normal);
 
 		Ray outgoingRay;

@@ -45,13 +45,14 @@ class PointCloudApp(QMainWindow):
         self.btn_adjust_point.clicked.connect(self.adjust_point_position)
         self.layout.addWidget(self.btn_adjust_point)
 
-        self.btn_mesh_deform = QPushButton("Apply Mesh Deformaation Manually", self)
-        self.btn_mesh_deform.clicked.connect(self.apply_mesh_deformation, True)
-        self.layout.addWidget(self.btn_mesh_deform)
+        self.btn_mesh_deform_manual = QPushButton("Apply Mesh Deformation Manually", self)
+        self.btn_mesh_deform_manual.clicked.connect(lambda: self.apply_mesh_deformation(True))
+        self.layout.addWidget(self.btn_mesh_deform_manual)
 
-        self.btn_mesh_deform = QPushButton("Apply Mesh Deformaation Automatically", self)
-        self.btn_mesh_deform.clicked.connect(self.apply_mesh_deformation, False)
-        self.layout.addWidget(self.btn_mesh_deform)
+        self.btn_mesh_deform_auto = QPushButton("Apply Mesh Deformation Automatically", self)
+        self.btn_mesh_deform_auto.clicked.connect(lambda: self.apply_mesh_deformation(False))
+        self.layout.addWidget(self.btn_mesh_deform_auto)
+
         
         # Set layout
         self.main_widget.setLayout(self.layout)
@@ -103,7 +104,7 @@ class PointCloudApp(QMainWindow):
             if not self.adjustment_window:
                 print("Havent adjusted yet.")
                 return
-            mesh_deformation(self.control_points_indices, self.handle_point_index, self.adjustment_window.displacements, self.mesh, isManually)
+            mesh_deformation(self.control_points_indices, self.handle_point_index, self.adjustment_window.displacements, self.mesh, isManually = True)
         else:
             mesh_deformation(mesh = self.mesh, isManually = False)
 

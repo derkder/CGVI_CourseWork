@@ -4,7 +4,10 @@ import scipy.sparse.linalg
 from scipy.sparse import coo_matrix
 
 def mesh_deformation(control_points_indices = None, handle_point_index = None, displacements = None, mesh = None, isManually = False):
-    displacements = [0.025, -0.025, 0]
+    if isManually:
+        displacements = displacements
+    else:
+        displacements = [0.025, -0.025, 0]
 
     ## Construct the graph
     vertices = np.asarray(mesh.vertices)

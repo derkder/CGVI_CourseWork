@@ -9,6 +9,7 @@
 # need to fill out the sections marked 'TODO'.
 import numpy as np
 
+# 貌似是全连接层 y = wx(注意最后一个dimension要pad 1)
 class Affine_layer(object):
     # The properties section lists the variables associated with this layer
     # which are stored whenever the forward or backward methods are called.
@@ -50,6 +51,8 @@ class Affine_layer(object):
         dydx = self.W[:-1, :].T
         dLdx = dLdy@dydx
 
-        # Store parameter gradients to object
+        # Store parameter gradients to object   Wnew​=Wold​−η⋅dLdW
+        # 梯度（dLdW）用于更新神经网络中的权重（W） 
         self.dLdW = self.x.T@dLdy
         return dLdx
+

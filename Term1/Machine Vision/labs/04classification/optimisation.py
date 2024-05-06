@@ -18,7 +18,9 @@ class Optimiser:
 
 
 class NewtonMethod(Optimiser):
+    # 变量 x 代表的是参数向量 \(\theta\)，因为这里相当于是在求theta取什么的时候likelihood最小
     def step(x, function):
+        # 那么就有疑惑了jacobian不是又要theta又要x吗，这里怎么只传了前者，因为x在self里（self.x）
         J = function.jacobian(x)
         H = function.hessian(x)
         
@@ -42,6 +44,7 @@ def array_from_dict(d):
 
 
 def optimise(start_position, tolerance, function, optimiser, max_iterations=None):
+    # 这里的x是theta的意思，即x前的系数，这里learning step想要求得的东西
     x = {0: start_position}
     w = {0: function(start_position)}
 

@@ -20,9 +20,13 @@ class Sigmoid_layer(object):
         return y
 
     def backward(self, dLdy):
+        # dL/dx=dL/dy⋅dy/dx
+        # dydx = self.y * (1 - self.y)
+        # dLdx = dLdy * dydx
         # Compute the back-propagated gradients of this layer.
         sigmoid = 1. / (1. + np.exp(-dLdx))
         dydx = sigmoid * (1-sigmoid)
         dLdx = dLdy * dydx
 
         return dLdx
+

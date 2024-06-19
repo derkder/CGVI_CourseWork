@@ -1,1 +1,1 @@
-Coursework and Notes from UCL CGVI
+Coursework and Notes for UCL CGVI
